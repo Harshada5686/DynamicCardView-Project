@@ -1,19 +1,25 @@
-let data=[];
+let data = [];
 const postContainer = document.querySelector('.card-container');
 
-const getData = () =>{
-    
-    fetch('https://fakestoreapi.com/products?limit=5')
-            .then(res=>res.json())
-            .then(json => {
-                // Store the API response in the variable
-                data = json;
-        
-                console.log(json)
-                postMethods(data);
-            });
-            
-}
+// Function to handle button click
+document.getElementById("showButton").addEventListener("click", function () {
+    // Get the value of the ID field
+    var idValue = document.getElementById("id").value;
+    // Print the ID value to the console
+    console.log("ID:", idValue);
+
+
+    fetch('https://fakestoreapi.com/products?limit='+idValue)
+        .then(res => res.json())
+        .then(json => {
+            // Store the API response in the variable
+            data = json;
+
+            console.log(json)
+            postMethods(data);
+        });
+});
+
 
 const postMethods = (data)=>{
     data.map((postData)=>{
@@ -33,11 +39,3 @@ const postMethods = (data)=>{
         postContainer.appendChild(postElement)
     })
 }
-<<<<<<< HEAD
-postMethods()
-getData();
-=======
-
-getData();
-postMethods()
->>>>>>> 991ef84fe1e95ff1e4a1a7fa67d7b88e7d4d60e5
